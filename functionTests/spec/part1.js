@@ -27,7 +27,7 @@
       });
       it('should expect capitalize(`i love breakfast at bill millers bbq`) to be `I Love Breakfast At Bill Miller Bbq`', function() {
         expect(capitalize(`i love breakfast at bill millers bbq`)).to.equal(
-          `I Love Breakfast At Bill Miller Bbq`
+          `I Love Breakfast At Bill Millers Bbq`
         );
       });
       it('should expect capitalize(`this is a Sentence.`) to be `This Is A Sentence.`', function() {
