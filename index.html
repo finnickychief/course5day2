@@ -64,7 +64,90 @@
 
   <main></main>
 
+  <label for="myInput">Input label</label>
+  <input id="myInput" type="text" />
+
   <footer></footer>
+
+  <script>
+
+    // Give the main area an h2 and a paragraph to describe site content
+    // Grab the main area
+    const mainArea = document.querySelector('main');
+
+    // Create the h2, paragraph and container for them
+    const leadHeader = document.createElement('h2');
+    const leadParagraph = document.createElement('p');
+    const leadContainer = document.createElement('div');
+
+    // Add content to the h2 and paragraph
+
+    leadHeader.innerHTML = 'Lorem ipsum dolor sit amet.';
+    leadParagraph.innerHTML = 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam natus sit ipsam veniam quidem dignissimos iste non, optio necessitatibus aspernatur.';
+
+    // Append to mainArea
+
+    // Item you to append TO on the left, item to append to it on the right
+    leadContainer.appendChild(leadHeader);
+    leadContainer.appendChild(leadParagraph);
+
+    mainArea.appendChild(leadContainer);
+
+
+    // Adding event listeners to items:
+
+    /* Format of addEventListener:
+      elementToAddTo.addEventListener('type of event', functionToBeCalled);
+
+      Remember that the function passed in must resolve to a function, so under most circumstances you cannot call the function with () at this point
+
+
+    */
+
+    // Add a listener to the H2 to make the text color randomize every time it is clicked
+    leadHeader.addEventListener('click', randomizeText);
+
+
+    // Remember we have access to the item that called the function via event.target. If we rename the 'event' we have to explicitly pass it in as an argument
+    function randomizeText(e) {
+      // Set the text color to a random number between 0 and 16777215, and convert that number to hexadecimal after it is generated.
+      e.target.style.color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    }
+
+    // Set the header to be the complementary color when the mouse is over it.
+    // Grab the header
+    const header = document.querySelector('header');
+
+    // Add the eventlistener for mouseover
+    header.addEventListener('mouseover', changeToColor);
+
+    // Add the eventlistener for mouseout
+    header.addEventListener('mouseout', changeFromColor);
+
+    // Function for mouseover to change TO complementary color
+    function changeToColor(e) {
+
+      // Find color to change to
+      // 16777215 - decimal of Current color
+      let newColor = 16777215 - parseInt('b5ffe1', 16)
+
+      e.target.style.backgroundColor = '#' + newColor.toString(16);
+    }
+
+    // Function for mosueout to change BACK from complementary color
+    function changeFromColor(e) {
+      e.target.style.backgroundColor = '#b5ffe1';
+
+    }
+
+
+
+
+
+  </script>
+
+
 </body>
+
 
 </html>

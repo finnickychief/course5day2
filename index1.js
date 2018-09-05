@@ -26,6 +26,20 @@
 
 
 
+  HTML Attribute names vs using them in Javascript
+    Some HTML attributes already have pre-existing meanings in Javascript so cannot be used by the same name when working with them in Javascript
+
+    Some examples:
+      htmlFor instead of for
+      className instead of class
+      
+    Another way to get around this is to use .setAttribute('attribute name', 'attribute value')
+
+    so to set a class of container:
+    element.setAttribute('class', 'container');
+
+    Or to set the for attribute on a label:
+    element.setAttribute('for', 'inputField');
 
 
 
