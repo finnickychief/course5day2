@@ -21,17 +21,19 @@
 
     describe('capitalize', function() {
       it('should expect capitalize(`hi there, how is it going?`) to be `Hi There, How Is It Going?`', function() {
-        expect(`hi there, how is it going?`).to.equal(
+        expect(capitalize(`hi there, how is it going?`)).to.equal(
           `Hi There, How Is It Going?`
         );
       });
       it('should expect capitalize(`i love breakfast at bill millers bbq`) to be `I Love Breakfast At Bill Miller Bbq`', function() {
-        expect(`i love breakfast at bill millers bbq`).to.equal(
+        expect(capitalize(`i love breakfast at bill millers bbq`)).to.equal(
           `I Love Breakfast At Bill Miller Bbq`
         );
       });
       it('should expect capitalize(`this is a Sentence.`) to be `This Is A Sentence.`', function() {
-        expect(`this is a Sentence.`).to.equal(`This Is A Sentence.`);
+        expect(capitalize(`this is a Sentence.`)).to.equal(
+          `This Is A Sentence.`
+        );
       });
     });
     describe('anagrams', function() {
@@ -76,9 +78,6 @@
       });
     });
     describe('palindrome', function() {
-      it('should expect palindrome(``) to be true', function() {
-        expect(palindrome(``)).to.equal(true);
-      });
       it('should expect palindrome(`aba`) to be true', function() {
         expect(palindrome(`aba`)).to.equal(true);
       });
@@ -99,7 +98,7 @@
       });
     });
     describe('reverseInt', function() {
-      it('should expect reverseInt() to be ', function() {
+      it('should expect reverseInt(5) to be 5', function() {
         expect(reverseInt(5)).to.equal(5);
       });
       it('should expect reverseInt(10) to be 1', function() {
