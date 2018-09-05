@@ -62,7 +62,10 @@
 
   </header>
 
-  <main></main>
+  <main>
+    <form id="loginForm" action="index.php" onsubmit="return validateInput()"></form>
+
+  </main>
 
   <label for="myInput">Input label</label>
   <input id="myInput" type="text" />
@@ -126,7 +129,7 @@
 
     // Function for mouseover to change TO complementary color
     function changeToColor(e) {
-
+      console.log({ e })
       // Find color to change to
       // 16777215 - decimal of Current color
       let newColor = 16777215 - parseInt('b5ffe1', 16)
@@ -137,8 +140,53 @@
     // Function for mosueout to change BACK from complementary color
     function changeFromColor(e) {
       e.target.style.backgroundColor = '#b5ffe1';
-
     }
+
+
+    // Form validation:
+    // Create the form
+    const loginForm = document.querySelector('#loginForm');
+    // const loginForm = document.createElement('form');
+    // loginForm.action = "index.php";
+    // loginForm.onsubmit = "return validateInput()";
+    //loginForm.addEventListener('onsubmit', validateInput)
+
+    //  Form with 2 inputs, and a submit button
+    // First input will be email
+    const emailInput = document.createElement('input');
+    emailInput.type = 'email';
+
+
+    // Second input will be password
+    const passwordInput = document.createElement('input');
+    passwordInput.type = 'password';
+
+    // Add submit button
+    const submitButton = document.createElement('button');
+    submitButton.innerHTML = 'Submit me';
+
+
+    // Add form to the page
+    loginForm.appendChild(emailInput);
+    loginForm.appendChild(passwordInput);
+    loginForm.appendChild(submitButton);
+    // document.querySelector('main').appendChild(loginForm);
+
+    // Add the validation
+    function validateInput() {
+      console.log({ event })
+      // Check that the email is not empty
+      if (emailInput.value.length === 0) {
+        alert('Please fill out the email field');
+        return false;
+      }
+      // Check that the password is not empty and is at least 8 characters
+      if (passwordInput.value.length < 8) {
+        alert('Password must be at least 8 characters!');
+        return false;
+      }
+    }
+
 
 
 
