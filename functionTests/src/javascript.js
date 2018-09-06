@@ -236,7 +236,84 @@ function anagrams(inString1, inString2) {
 // chunk([1, 2, 3, 4, 5], 4) --> [[ 1, 2, 3, 4], [5]]
 // chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
 
-function chunk() {}
+function chunk(inputArray, chunkSize) {
+  // Pseudocode:
+  /*
+  
+    while there are still items left in the array(first parameter)
+      add a chunk of length N(second parameter) that has been removed from our array to our result
+  
+  */
+  const resultArray = [];
+
+  // while (inputArray.length != 0) {
+  // Keep going while there are still items left to remove
+  // let chunk = inputArray.splice(0, chunkSize);
+  // resultArray.push(chunk);
+
+  //resultArray.push(inputArray.splice(0, chunkSize)); // 1 line
+  //   let chunk = [];
+  //   for (let i = 0; i < chunkSize; i++) {
+  //     if (inputArray[0] !== undefined) {
+  //       chunk.push(inputArray.shift());
+  //     }
+  //   }
+  //   resultArray.push(chunk);
+  // }
+
+  /*
+    [1,2,3,4,5,6,7,8,9,10,11,12,13] with chunks of 3
+
+    i = 0, we want to grab [1,2,3]
+
+    put array.slice(0, 3) into the result array
+
+    i will now be 3
+
+    [1,2,3,4,5,6,7,8,9,10,11,12,13]
+           i
+    
+    i = 3, we want to grab [4,5,6]
+
+    put array.slice(3, 6) into result array
+
+    i will now be 6
+
+    [1,2,3,4,5,6,7,8,9,10,11,12,13]
+                 i
+
+    i = 6, we want [7,8,9]
+
+    put array.slice(6, 9) into result array
+
+    i will now be 9
+  
+  
+  
+  */
+
+  /*
+    with chunk(array size 13, chunkSize 3)
+    For an array of size 13 we can't go past index 12
+
+    i = 0 grab 3 items
+    i = 3 grab 3 items
+    i = 6 grab 3 items
+    i = 9 grab 3 items
+    i = 12 grab 1 item
+    i = 15 <- stop the loop
+
+
+  */
+
+  // We don't need to look at EVERY item, just every nth item where chunkSize is n
+  for (let i = 0; i < inputArray.length; i += chunkSize) {
+    let chunk = inputArray.slice(i, i + chunkSize);
+    resultArray.push(chunk);
+  }
+
+  return resultArray;
+}
 
 // --- Directions
 // Given a string, return true if the string is a palindrome
@@ -247,7 +324,41 @@ function chunk() {}
 //   palindrome("abba") === true
 //   palindrome("abcdefg") === false
 
-function palindrome() {}
+function palindrome(inString) {
+  // Split/reverse method:
+  // let inStringCopy = inString
+  //   .split('') // Split into characters
+  //   .reverse() // Reverse the characters
+  //   .join(''); // Make it a string again
+  // if (inString === inStringCopy) {
+  //   return true;
+  // } else {
+  //   return false;
+  // }
+
+  // Using pointers
+
+  /*
+  'a really long string this string is really long yllaer a'
+
+
+*/
+
+  let leftCounter = 0; // Counter for left side
+  let rightCounter = inString.length - 1; // Counter for right side
+
+  // While the counters haven't met
+  while (leftCounter < rightCounter) {
+    if (inString[leftCounter] !== inString[rightCounter]) {
+      return false;
+    } else {
+      leftCounter++; // Move left counter to right
+      rightCounter--; // Move right counter to left
+    }
+  }
+
+  return true;
+}
 
 // --- Directions
 // Given an integer, return an integer that is the reverse
@@ -259,4 +370,33 @@ function palindrome() {}
 //   reverseInt(-15) === -51
 //   reverseInt(-90) === -9
 
-function reverseInt(n) {}
+function reverseInt(n) {
+  // Remove the negative while it is still a number
+  let isNegative = false;
+  if (n < 0) {
+    n *= -1;
+    isNegative = true;
+  }
+
+  // Math.abs notation: Math.abs(-4); <- will result to 4
+  //                    Math notation: | -4 | = 4
+  // Flip the digits
+  // Everything that is left in our number is only digits
+
+  n = n
+    .toString() // Convert to string
+    .split('') // Convert to array
+    .reverse() // Reverse array
+    .join(''); // Convert to string
+
+  n = parseInt(n); // Convert to integer
+  console.log(n);
+  // If the number was negative, multiply it by -1 and return it.
+  // Else, multiply it by 1 and return it
+
+  if (isNegative) {
+    return n * -1;
+  } else {
+    return n;
+  }
+}
