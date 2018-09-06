@@ -7,7 +7,46 @@
 //   vowels('Why do you ask?') --> 4
 //   vowels('Why?') --> 0
 
-function vowels() {}
+function vowels(inputString) {
+  const vowelListArr = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
+  const vowelListStr = 'aeiou';
+
+  const vowelMap = {
+    a: true,
+    e: true,
+    i: true,
+    o: true,
+    u: true
+  };
+
+  let vowelCount = 0;
+  inputString = inputString.toLowerCase();
+
+  for (let i = 0; i < inputString.length; i++) {
+    // Is the current Character in our list / If our vowel List includes the character
+
+    // if (
+    //   inputString[i] === 'a' ||
+    //   inputString[i] === 'e' ||
+    //   inputString[i] === 'i' ||
+    //   inputString[i] === 'o' ||
+    //   inputString[i] === 'u' ||
+    //   inputString[i] === 'A' . . .
+    // ) {
+    //   vowelCount++;
+    // }
+
+    // if (vowelListArr.includes(inputString[i].toLowerCase())) {
+    //   vowelCount++;
+    // }
+
+    if (vowelMap[inputString[i]] !== undefined) {
+      vowelCount++;
+    }
+  }
+
+  return vowelCount;
+}
 
 // --- Directions
 // Write a function that accepts a string.  The function should
@@ -18,7 +57,28 @@ function vowels() {}
 //   capitalize('a lazy fox') --> 'A Lazy Fox'
 //   capitalize('look, it is working!') --> 'Look, It Is Working!'
 
-function capitalize() {}
+function capitalize(sentence) {
+  // Get the individual words
+  let words = sentence.split(' ');
+
+  // Capitalize the first character in each word
+  for (let i = 0; i < words.length; i++) {
+    words[i] = words[i][0].toUpperCase() + words[i].slice(1);
+  }
+
+  // Difference between slice and substr:
+  // Slice grabs the items from index 1 to and NOT including index 2
+  // 'Hello'.slice(0,3) - > 'Hel'
+  // If you leave off the second parameter, it gives you all of the remaining characters
+
+  // substr grabs N items from a string, starting at the index where N is the second parameter
+  // 'Hello'.slice(1,3) -> 'el'
+  // 'Hello'.slice(1, 1+3);
+  // 'Hello'.substr(1,3) - > 'ell'
+
+  // Put the words back together
+  return words.join(' ');
+}
 
 // --- Directions
 // Check to see if two provided strings are anagrams of eachother.
@@ -30,7 +90,31 @@ function capitalize() {}
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
-function anagrams() {}
+function anagrams() {
+  // Do sort method then charmap method
+
+  // Cheasheet for regular expressions: https://www.rexegg.com/regex-quickstart.html
+  // Remove all dollar signs from a string:
+  let exampleString = 'This$ has$$$$ too $many$ dollarsigns';
+  // the replace method takes in a 'mask', and a replacement value for anything that is matched by the mask.
+  // The double /'s are used to indicate that it is a regular expression, and the g tells the replace method to search the entire string. If you only want to look for one value, you can place it within the //'s by itself like this:
+
+  // Remove spaces from the string
+  exampleString = exampleString.replace(/ /g, '');
+
+  // Remove $ signs:(you must escape the $ because it is a reserved character that has another meaning in regular expression syntax)
+  exampleString = exampleString.replace(/\$/g, '');
+
+  // With regular expressions you can look for more than one value to replace by using the brackets - []'s. List out all of the items you want to target within them, and it will search for all of them at once.
+
+  // So to replace both the $ signs and the spaces use the following:
+  exampleString = exampleString.replace(/[ \$]/g, '');
+
+  // Replace all non-alphanumeric characters:
+  exampleString = exampleString.replace(/\W/g, '');
+
+  //replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
+}
 
 // --- Directions
 // Given an array and chunk size, divide the array into many subarrays
