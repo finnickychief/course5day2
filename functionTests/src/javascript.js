@@ -400,3 +400,65 @@ function reverseInt(n) {
     return n;
   }
 }
+
+/*
+  Data duplication
+
+  Take in an string, and count the number of characters that have duplicates. If an item has more than 1 duplicate, just count it once.
+
+  // This is a good daay
+  // aaaddghiioossty <- should return 5
+
+*/
+
+function countDuplicates(inString) {
+  inString = inString.replace(/ /g, ''); // Get rid of spaces
+  inString = inString.toLowerCase(); // Convert to lowercase
+  let stringArray = inString.split(''); // Convert to an array
+  stringArray.sort(); // Sort our characters
+
+  let duplicateCount = 0;
+
+  for (let i = 0; i < stringArray.length; i++) {
+    if (stringArray[i] === stringArray[i + 1]) {
+      duplicateCount++;
+      console.log('Current i inside of For loop: ' + i);
+      while (stringArray[i] === stringArray[i + 1]) {
+        i++;
+        console.log('i Inside while loop, after increment: ' + i);
+        console.log(
+          `Current letter: ${stringArray[i]} Next Letter: ${stringArray[i + 1]}`
+        );
+      }
+    }
+  }
+  let duplicateCount2 = 0;
+
+  while (stringArray.length > 0) {
+    if (stringArray[0] === stringArray[1]) {
+      duplicateCount2++;
+      while (stringArray[0] === stringArray[1]) {
+        stringArray.shift();
+      }
+    }
+    stringArray.shift();
+  }
+
+  return duplicateCount2;
+}
+
+// Weave/Zip arrays:
+/*
+  Write a method that takes in 2 arrays, and 'weaves' them together
+
+  weaveArray([1,2,3], [4,5,6]) === [1,4,2,5,3,6];
+  weaveArray([7,2,1], [10,-1,4]) === [7,10,2,-1,1,4];
+  weaveArray([1,2,3,4,5], [6,7,8]) === [1,6,2,7,3,8,4,5]
+
+*/
+
+function weaveArray(inAry1, inAry2) {
+  const weavedArray = [];
+
+  return weavedArray;
+}
