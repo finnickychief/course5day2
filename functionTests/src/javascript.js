@@ -455,10 +455,27 @@ function countDuplicates(inString) {
   weaveArray([7,2,1], [10,-1,4]) === [7,10,2,-1,1,4];
   weaveArray([1,2,3,4,5], [6,7,8]) === [1,6,2,7,3,8,4,5]
 
+  while you still have items in either array to merge
+    take one from the left
+    take one from the right
+    Go to top
+
+  concatenate the remaining items with the result array
+
 */
 
 function weaveArray(inAry1, inAry2) {
-  const weavedArray = [];
+  let weavedArray = [];
 
+  // Until we run out of items in an array
+  while (inAry1.length > 0 && inAry2.length > 0) {
+    // Add an item from the left
+    weavedArray.push(inAry1.shift());
+    // Add an item from the right
+    weavedArray.push(inAry2.shift());
+  }
+  // Add the remaining items(no matter which array they're contained in)
+  weavedArray = weavedArray.concat(inAry1).concat(inAry2);
+  // Return result
   return weavedArray;
 }
